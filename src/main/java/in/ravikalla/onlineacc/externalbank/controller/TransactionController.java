@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 import in.ravikalla.onlineacc.externalbank.util.AppConstants;
 
 @RestController
-@RequestMapping(AppConstants.EXTERNAL_BANK_URI)
+@RequestMapping(AppConstants.EXTERNAL_AUDIT_URI)
 public class TransactionController {
 	private static final Logger L = LogManager.getLogger(TransactionController.class);
 
-	@RequestMapping(value = AppConstants.EXTERNAL_BANK_URL_DEPOSIT + "/{amount}", method = RequestMethod.GET)
+	@RequestMapping(value = AppConstants.EXTERNAL_AUDIT_URL_DEPOSIT + "/{amount}", method = RequestMethod.GET)
 	public String deposit(@PathVariable Double amount) {
-		L.debug("19 : Start : TransactionController.deposit() : amount = {}", amount);
+		L.info("19 : Start : TransactionController.deposit() : amount = {}", amount);
 		String strResponse;
 		double dblAmount = amount.doubleValue();
 		if ((dblAmount >= 5000) && (dblAmount <= 100000000))
@@ -24,13 +24,13 @@ public class TransactionController {
 		else
 			strResponse = "deposit failed";
 
-		L.debug("27 : End : TransactionController.deposit() : amount = {}", amount, strResponse);
+		L.info("27 : End : TransactionController.deposit() : amount = {}, strResponse = {}", amount, strResponse);
 		return strResponse;
 	}
 
-	@RequestMapping(value = AppConstants.EXTERNAL_BANK_URL_WITHDRAW + "/{amount}", method = RequestMethod.GET)
+	@RequestMapping(value = AppConstants.EXTERNAL_AUDIT_URL_WITHDRAW + "/{amount}", method = RequestMethod.GET)
 	public String withdraw(@PathVariable Double amount) {
-		L.debug("33 : Start : TransactionController.withdraw() : amount = {}", amount);
+		L.info("33 : Start : TransactionController.withdraw() : amount = {}", amount);
 		String strResponse;
 		double dblAmount = amount.doubleValue();
 		if ((dblAmount >= 5000) && (dblAmount <= 100000000))
@@ -38,7 +38,7 @@ public class TransactionController {
 		else
 			strResponse = "withdraw failed";
 
-		L.debug("41 : End : TransactionController.withdraw() : amount = {}, strResponse = {}", amount, strResponse);
+		L.info("41 : End : TransactionController.withdraw() : amount = {}, strResponse = {}", amount, strResponse);
 		return strResponse;
 	}
 }
